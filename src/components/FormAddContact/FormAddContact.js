@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Form, Field, FormGroup, Button } from './FormAddContact.styled';
+import { Form, Field, FormGroup, Button } from 'components';
 
 const contactsValidation = Yup.object().shape({
   name: Yup.string().min(4, 'Too Short!').required('Required'),
