@@ -1,4 +1,4 @@
-import { LiItem } from 'components';
+import { LiItem } from './ContactsItem.styled';
 
 export const ContactsItem = ({ item, onDelete }) => {
   return (
