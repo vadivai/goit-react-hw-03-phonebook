@@ -1,10 +1,12 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { Wrapper } from 'components/ContactsList/ContactsList.styled';
-import { ContactsList } from 'components/ContactsList/ContactsList';
-import { FormAddContact } from 'components/FormAddContact/FormAddContact';
-import { Section } from './App.styled';
-import { Filter } from 'components/Filter/Filter';
+import {
+  Section,
+  Wrapper,
+  FormAddContact,
+  ContactsList,
+  Filter,
+} from 'components';
 
 export class App extends Component {
   state = {
@@ -17,6 +19,24 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const savedContacts = window.localStorage.getItem('contacts');
+    if (savedContacts !== null) {
+      this.setState({
+        contacts: JSON.parse(savedContacts),
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      window.localStorage.setItem(
+        'contacts',
+        JSON.stringify(this.state.contacts)
+      );
+    }
+  }
+
   addContact = newContact => {
     const { contacts } = this.state;
     const isExistContact = contacts.find(contact => {
@@ -27,7 +47,7 @@ export class App extends Component {
       return alert(`${newContact.name} is already in contacts`);
     }
 
-    return this.setState(prevState => {
+    this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, { ...newContact, id: nanoid() }],
       };
@@ -74,13 +94,3 @@ export class App extends Component {
     );
   }
 }
-
-// handleSubmit = evt => {
-//   evt.preventDefault();
-//   const form = evt.currentTarget;
-//   const name = form.elements.name;
-//   console.log('form :>> ', form);
-//   console.log(':>> ', form.elements);
-//   // this.props.onSubmit({ name, tel });
-//   form.reset();
-// };

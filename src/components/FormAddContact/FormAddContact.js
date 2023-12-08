@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Form, Field, FormGroup, Button } from './FormAddContact.styled';
+import { Form, Field, FormGroup, Button } from 'components';
 
 const contactsValidation = Yup.object().shape({
   name: Yup.string().min(4, 'Too Short!').required('Required'),
@@ -16,7 +16,6 @@ export const FormAddContact = ({ onAddContact }) => {
       }}
       validationSchema={contactsValidation}
       onSubmit={(values, actions) => {
-        // console.log('values :>> ', values);
         onAddContact(values);
         actions.resetForm();
       }}

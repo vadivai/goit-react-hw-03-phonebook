@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { Form, Field, FormGroup } from './Filter.styled';
+import { Form, Field, FormGroup } from 'components';
 
 export const Filter = ({ filter, onFilter }) => {
   return (

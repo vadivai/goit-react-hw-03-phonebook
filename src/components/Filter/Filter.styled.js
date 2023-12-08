@@ -1,5 +1,3 @@
-// import { Filter } from './Filter';
-
 import styled from 'styled-components';
 import {
   Form as FormikForm,
